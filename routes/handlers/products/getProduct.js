@@ -2,19 +2,30 @@ const { Product, Variant } = require('../../../models');
 
 module.exports = async (req, res) => {
   const { id } = req.params;
+  const { color, size, isi } = req.query;
+  const sqlOption = {
+    model: Variant,
+    as: 'variants',
+    attributes: ['id', 'color', 'size', 'isi', 'stock', 'price'],
+  };
 
-  const product = await Product.findByPk(id, {
+  if (color && size && isi) {
+    sqlOption.where = {
+      color, size, isi,
+    };
+  }
+
+  const product = await Product.findOne({
     attributes: ['id', 'name'],
-    include: {
-      model: Variant,
-      as: 'variants',
-      attributes: ['id', 'color', 'size', 'isi', 'stock', 'price'],
+    where: {
+      id,
     },
+    include: sqlOption,
   });
   if (!product) {
     return res.status(404).json({
       status: 'error',
-      message: 'user not found',
+      message: 'product not found',
     });
   }
 

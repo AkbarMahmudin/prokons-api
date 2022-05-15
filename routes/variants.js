@@ -7,6 +7,7 @@ const { variantValidator } = require('../validator');
 const verifyToken = require('../middleware/verifyToken');
 
 router.use(verifyToken);
+router.get('/', variantsHandler.getVariant);
 router.post('/', variantValidator, variantsHandler.create);
 router.put('/:id', variantsHandler.update);
 router.delete('/:id', variantsHandler.destroy);
