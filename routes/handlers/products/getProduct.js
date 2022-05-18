@@ -16,12 +16,14 @@ module.exports = async (req, res) => {
   }
 
   const product = await Product.findOne({
-    attributes: ['id', 'name'],
+    attributes: ['id', 'name', 'image'],
     where: {
       id,
     },
     include: sqlOption,
   });
+  product.image = `${req.get('host')}/images/${product.image ? product.image : 'no-photo-available'}}`;
+
   if (!product) {
     return res.status(404).json({
       status: 'error',

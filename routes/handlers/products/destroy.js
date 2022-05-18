@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 const { Product } = require('../../../models');
 
 module.exports = async (req, res) => {
@@ -11,10 +13,14 @@ module.exports = async (req, res) => {
     });
   }
 
-  await product.destroy();
+  fs.unlink(`./public/images/${product.image}`, async (err) => {
+    if (err) return res.status(400).json({ status: 'error', message: err.message });
 
-  return res.json({
-    status: 'success',
-    message: 'product deleted',
+    await product.destroy();
+
+    return res.json({
+      status: 'success',
+      message: 'product deleted',
+    });
   });
 };

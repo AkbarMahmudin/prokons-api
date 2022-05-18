@@ -5,12 +5,13 @@ module.exports = (req, res, next) => {
   const schema = Joi.object({
     name: Joi.string().required(),
     username: Joi.string().required(),
+    password: Joi.string().required(),
     role: Joi.string().valid('admin', 'cashier').required(),
   });
 
   const validateResult = schema.validate(req.body);
   if (validateResult.error) {
-    return res.status(403).json({
+    return res.status(400).json({
       status: 'errror',
       message: validateResult.error.message,
     });

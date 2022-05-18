@@ -14,6 +14,7 @@
     "rules": {
         "strict": "off",
         "no-unused-vars": "warn",
-        "consistent-return": "off"
+        "consistent-return": "off",
+        "no-param-reassign": "off"
     }
 }
