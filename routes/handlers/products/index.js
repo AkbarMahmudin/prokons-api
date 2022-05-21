@@ -5,9 +5,9 @@ const getProducts = require('./getProducts');
 const getProduct = require('./getProduct');
 
 module.exports = {
-  create,
-  update,
-  destroy,
-  getProducts,
-  getProduct,
+    create,
+    update,
+    destroy,
+    getProducts,
+    getProduct,
 };
