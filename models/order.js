@@ -14,12 +14,10 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.Variant, {
         foreignKey: 'variantId',
         as: 'variants',
-        onDelete: 'Cascade',
       });
       this.belongsTo(models.Transaction, {
         foreignKey: 'transactionId',
         as: 'transactions',
-        onDelete: 'Cascade',
       });
     }
   }

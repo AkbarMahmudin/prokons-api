@@ -19,7 +19,7 @@ module.exports = async (req, res) => {
 
   const product = await Product.findAll(sqlOption);
   product.map((p) => {
-    p.image = `${req.get('host')}/images/${p.image ? p.image : 'no-photo-available.png'}`;
+    p.image = `${req.protocol}://${req.get('host')}/images/${p.image ? p.image : 'no-photo-available.png'}`;
     return p;
   });
 

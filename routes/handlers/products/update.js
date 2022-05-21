@@ -39,7 +39,7 @@ module.exports = async (req, res) => {
   }
 
   await product.update(data);
-  product.image = `${req.get('host')}/images/${product.image}`;
+  product.image = `${req.protocol}://${req.get('host')}/images/${product.image}`;
 
   return res.json({
     status: 'success',

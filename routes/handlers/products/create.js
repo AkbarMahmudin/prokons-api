@@ -28,7 +28,7 @@ module.exports = async (req, res) => {
       data: {
         id: product.id,
         name: product.name,
-        image: `${req.get('host')}/images/${filename}`,
+        image: `${req.protocol}://${req.get('host')}/images/${filename}`,
       },
     });
   });

@@ -15,6 +15,8 @@ module.exports = {
           model: 'transactions',
           key: 'id',
         },
+        onDelete: 'SET NULL',
+        onUpdate: 'SET NULL',
       },
       variantId: {
         type: Sequelize.INTEGER,
@@ -22,6 +24,8 @@ module.exports = {
           model: 'variants',
           key: 'id',
         },
+        onDelete: 'SET NULL',
+        onUpdate: 'SET NULL',
       },
       qty: {
         type: Sequelize.INTEGER,
