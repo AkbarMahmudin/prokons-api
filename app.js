@@ -12,6 +12,7 @@ const variantsRouter = require('./routes/variants');
 const ordersRouter = require('./routes/orders');
 const transactionsRouter = require('./routes/transactions');
 const refreshTokensRouter = require('./routes/refreshTokens');
+const colorsRouter = require('./routes/colors');
 
 const app = express();
 
@@ -29,5 +30,6 @@ app.use('/variants', variantsRouter);
 app.use('/orders', ordersRouter);
 app.use('/transactions', transactionsRouter);
 app.use('/refresh-tokens', refreshTokensRouter);
+app.use('/colors', colorsRouter);
 
 module.exports = app;

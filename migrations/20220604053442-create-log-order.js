@@ -2,24 +2,33 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('refresh_tokens', {
+    await queryInterface.createTable('log_orders', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      token: {
-        type: Sequelize.TEXT,
-      },
-      userId: {
+      transactionId: {
         type: Sequelize.INTEGER,
-        references: {
-          model: 'users',
-          key: 'id',
-        },
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE',
+      },
+      variantId: {
+        type: Sequelize.INTEGER,
+      },
+      product: {
+        type: Sequelize.STRING,
+      },
+      qty: {
+        type: Sequelize.INTEGER,
+      },
+      price: {
+        type: Sequelize.INTEGER,
+      },
+      total: {
+        type: Sequelize.INTEGER,
+      },
+      transactionDate: {
+        type: Sequelize.DATE,
       },
       createdAt: {
         allowNull: false,
@@ -32,6 +41,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('refresh_tokens');
+    await queryInterface.dropTable('log_orders');
   },
 };

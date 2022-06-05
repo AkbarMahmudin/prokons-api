@@ -15,8 +15,8 @@ module.exports = {
           model: 'users',
           key: 'id',
         },
-        onDelete: 'SET NULL',
-        onUpdate: 'SET NULL',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
       },
       status: {
         type: Sequelize.ENUM('process', 'paid'),

@@ -28,7 +28,7 @@ module.exports = {
         allowNull: false,
       },
       isi: {
-        type: Sequelize.ENUM('atasan', 'setelan'),
+        type: Sequelize.ENUM('atasan', 'bawahan', 'setelan'),
         allowNull: false,
       },
       stock: {

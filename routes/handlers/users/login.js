@@ -40,7 +40,7 @@ module.exports = async (req, res) => {
   if (!isValidPassword) {
     return res.status(404).json({
       status: 'error',
-      message: 'user not found',
+      message: 'invalid password',
     });
   }
 
