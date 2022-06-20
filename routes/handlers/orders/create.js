@@ -26,6 +26,19 @@ module.exports = async (req, res) => {
       });
     }
 
+    const qty = req.body.map((r) => r.qty);
+    const stockAvailable = variants.map((v) => v.stock);
+
+    // Cek qty order
+    for (let i = 0; i < qty.length; i += 1) {
+      if (qty[i] > stockAvailable[i] || qty < 1) {
+        return res.status(404).json({
+          status: 'error',
+          message: 'Stock not available',
+        });
+      }
+    }
+
     const userId = req.user.data.id;
     const transaction = await Transaction.create({
       userId,

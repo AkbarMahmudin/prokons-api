@@ -13,6 +13,7 @@ const ordersRouter = require('./routes/orders');
 const transactionsRouter = require('./routes/transactions');
 const refreshTokensRouter = require('./routes/refreshTokens');
 const colorsRouter = require('./routes/colors');
+const logsRouter = require('./routes/logs');
 
 const app = express();
 
@@ -31,5 +32,6 @@ app.use('/orders', ordersRouter);
 app.use('/transactions', transactionsRouter);
 app.use('/refresh-tokens', refreshTokensRouter);
 app.use('/colors', colorsRouter);
+app.use('/logs', logsRouter);
 
 module.exports = app;
