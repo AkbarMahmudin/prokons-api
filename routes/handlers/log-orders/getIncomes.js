@@ -3,15 +3,19 @@ const { LogOrder, sequelize } = require('../../../models');
 function todayData(logOrders) {
   const todayDate = new Date().toLocaleDateString();
 
-  const todayIncome = logOrders
-    .filter((orders) => orders.transactionDate.toLocaleDateString() === todayDate)
-    .map((data) => data.total)
-    .reduce((total, totalOrder) => total + totalOrder);
+  const todayIncome = logOrders.length
+    ? logOrders
+      .filter((orders) => orders.transactionDate.toLocaleDateString() === todayDate)
+      .map((data) => data.total)
+      .reduce((total, totalOrder) => total + totalOrder)
+    : 0;
 
-  const totalOrder = logOrders
-    .filter((orders) => orders.transactionDate.toLocaleDateString() === todayDate)
-    .map((data) => data.qty)
-    .reduce((total, qtyOrder) => total + qtyOrder);
+  const totalOrder = logOrders.length
+    ? logOrders
+      .filter((orders) => orders.transactionDate.toLocaleDateString() === todayDate)
+      .map((data) => data.qty)
+      .reduce((total, qtyOrder) => total + qtyOrder)
+    : 0;
 
   return {
     totalOrder,
@@ -21,21 +25,26 @@ function todayData(logOrders) {
 
 function monthlyData(logOrders) {
   const date = new Date();
-  const mounthlyIncome = logOrders
-    .filter((orders) => (
-      orders.transactionDate.getMonth() === date.getMonth()
-      && orders.transactionDate.getFullYear() === date.getFullYear()
-    ))
-    .map((data) => data.total)
-    .reduce((total, totalOrder) => total + totalOrder);
+  const mounthlyIncome = logOrders.length
+    ? logOrders
+      .filter((orders) => (
+        orders.transactionDate.getMonth() === date.getMonth()
+        && orders.transactionDate.getFullYear() === date.getFullYear()
+      ))
+      .map((data) => data.total)
+      .reduce((total, totalOrder) => total + totalOrder)
+    : 0;
 
-  const totalOrder = logOrders
-    .filter((orders) => (
-      orders.transactionDate.getMonth() === date.getMonth()
-      && orders.transactionDate.getFullYear() === date.getFullYear()
-    ))
-    .map((data) => data.qty)
-    .reduce((total, qtyOrder) => total + qtyOrder);
+  const totalOrder = logOrders.length
+    ? logOrders
+      .filter((orders) => (
+        orders.transactionDate.getMonth() === date.getMonth()
+        && orders.transactionDate.getFullYear() === date.getFullYear()
+      ))
+      .map((data) => data.qty)
+      .reduce((total, qtyOrder) => total + qtyOrder)
+    : 0;
+
   return {
     totalOrder,
     mounthlyIncome,
@@ -44,15 +53,19 @@ function monthlyData(logOrders) {
 
 function yearlyData(logOrders) {
   const yearDate = new Date().getFullYear();
-  const yearlyIncome = logOrders
-    .filter((orders) => orders.transactionDate.getFullYear() === yearDate)
-    .map((data) => data.total)
-    .reduce((total, totalOrder) => total + totalOrder);
+  const yearlyIncome = logOrders.length
+    ? logOrders
+      .filter((orders) => orders.transactionDate.getFullYear() === yearDate)
+      .map((data) => data.total)
+      .reduce((total, totalOrder) => total + totalOrder)
+    : 0;
 
-  const totalOrder = logOrders
-    .filter((orders) => orders.transactionDate.getFullYear() === yearDate)
-    .map((data) => data.qty)
-    .reduce((total, qtyOrder) => total + qtyOrder);
+  const totalOrder = logOrders.length
+    ? logOrders
+      .filter((orders) => orders.transactionDate.getFullYear() === yearDate)
+      .map((data) => data.qty)
+      .reduce((total, qtyOrder) => total + qtyOrder)
+    : 0;
 
   return {
     totalOrder,
